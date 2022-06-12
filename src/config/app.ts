@@ -11,9 +11,9 @@ class App {
     private readonly port: string;
 
     private apiPaths = {
-        bankAcounts: 'api/bank-account',
-        customers: 'api/customer',
-        transfers: 'api/transfer'
+        bankAcounts: '/api/bank-account',
+        customers: '/api/customer',
+        transfers: '/api/transfer'
     }
 
     constructor() {
