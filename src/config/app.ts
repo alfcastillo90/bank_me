@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 
+import balanceRoutes from '../app/balance/balance.route';
 import bankAccountRoutes from '../app/bankAccount/bankAccount.route';
 import customerRoutes from '../app/customer/customer.route';
 import transferRoutes from '../app/transfer/transfer.route';
@@ -11,6 +12,7 @@ class App {
     private readonly port: string;
 
     private apiPaths = {
+        balance: '/api/balance',
         bankAcounts: '/api/bank-account',
         customers: '/api/customer',
         transfers: '/api/transfer'
@@ -36,6 +38,7 @@ class App {
     }
 
     routes() {
+        this.app.use(this.apiPaths.balance, balanceRoutes);
         this.app.use(this.apiPaths.bankAcounts, bankAccountRoutes);
         this.app.use(this.apiPaths.customers, customerRoutes);
         this.app.use(this.apiPaths.transfers, transferRoutes);

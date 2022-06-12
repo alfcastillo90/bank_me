@@ -32,3 +32,14 @@ export const getBankAccountsByCustomer = async (req: Request, res: Response) => 
         return res.status(400).send(e)
     }
 }
+
+export const createBankAccount = async (req: Request, res: Response) => {
+    try {
+        return res.json({
+            result: 'success',
+            message: 'createBankAccount'
+        });
+    } catch(e: any) {
+        return res.status(400).send(e)
+    }
+}

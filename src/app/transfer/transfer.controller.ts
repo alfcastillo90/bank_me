@@ -43,3 +43,25 @@ export const getTransfersById = async (req: Request, res: Response) => {
         return res.status(400).send(e)
     }
 }
+
+export const createExternalTransfer = async (req: Request, res: Response) => {
+    try {
+        return res.json({
+            result: 'success',
+            message: 'createExternalTransfer'
+        });
+    } catch(e: any) {
+        return res.status(400).send(e)
+    }
+}
+
+export const createInternalTransfer = async (req: Request, res: Response) => {
+    try {
+        return res.json({
+            result: 'success',
+            message: 'createExternalTransfer'
+        });
+    } catch(e: any) {
+        return res.status(400).send(e)
+    }
+}
