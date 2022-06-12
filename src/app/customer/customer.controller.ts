@@ -21,3 +21,14 @@ export const getCustomersById = async (req: Request, res: Response) => {
         return res.status(400).send(e)
     }
 }
+
+export const createCustomer = async (req: Request, res: Response) => {
+    try {
+        return res.json({
+            result: 'success',
+            message: 'createCustomer'
+        });
+    } catch(e: any) {
+        return res.status(400).send(e)
+    }
+}
