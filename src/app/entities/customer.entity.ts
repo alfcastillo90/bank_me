@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BankAccount } from "./bank-account.entity";
+import { WireTransfer } from "./wire-transfer.entity";
 
 const moment = require('moment');
 @Entity({ name: 'customers' })
@@ -39,4 +40,7 @@ export class Customer {
 
     @OneToMany(() => BankAccount, (bankAccount: BankAccount) => bankAccount.customerId, { eager: true, cascade: true }) 
     bankAccounts: BankAccount[]
+
+    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.customerId, { eager: true, cascade: true }) 
+    wireTransfers: WireTransfer[]
 }

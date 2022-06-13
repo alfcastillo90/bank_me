@@ -1,9 +1,19 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Bank } from "./bank.entity";
+import { Customer } from "./customer.entity";
+
+const moment = require('moment');
 
 @Entity({ name: 'wire_transfers' })
 export class WireTransfer {
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column({ name: 'bank_id' })
+    bankId: number;
+
+    @Column({ name: 'customer_id' })
+    customerId: number;
     
     @Column()
     amount: number;
@@ -23,9 +33,15 @@ export class WireTransfer {
     @Column()
     type: string;
     
-    @Column({ name: 'create_at' })
-    createAt: Date;
+    @Column({ name: 'create_at', default:  moment().format('YYYY-MM-DD hh:mm:ss')})
+    createAt: string;
+    
+    @Column({ name: 'update_at', default:  moment().format('YYYY-MM-DD hh:mm:ss'), onUpdate: moment().format('YYYY-MM-DD hh:mm:ss')})
+    updateAt: string;
 
-    @Column({ name: 'update_at' })
-    updateAt: Date;
+    @ManyToOne(() => Bank, (bank: Bank) => bank.bankAccounts)
+    bank: Bank;
+
+    @ManyToOne(() => Customer, (customer: Customer) => customer.wireTransfers)
+    customer: Customer;
 }
