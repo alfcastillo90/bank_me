@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Bank } from "./bank.entity";
+import { Customer } from "./customer.entity";
 const moment = require('moment');
 
 @Entity({ name: 'bank_accounts' })
@@ -29,4 +31,10 @@ export class BankAccount {
     
     @Column({ name: 'update_at', default:  moment().format('YYYY-MM-DD hh:mm:ss'), onUpdate: moment().format('YYYY-MM-DD hh:mm:ss')})
     updateAt: string;
+
+    @ManyToOne(() => Bank, (bank: Bank) => bank.bankAccounts)
+    bank: Bank;
+
+    @ManyToOne(() => Customer, (customer: Customer) => customer.bankAccounts)
+    customer: Customer;
 }
