@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createExternalTransfer, createInternalTransfer, getTransfers, getTransfersByBankAccount, getTransfersByCustomer, getTransfersById } from "./transfer.controller";
+import { createExternalTransfer, createInternalTransfer, getTransfers, getTransfersByBankAccount, getTransfersByCustomer, getTransfersById } from "./wire-transfer.controller";
 
 const router = Router();
 

@@ -7,7 +7,7 @@ import balanceRoutes from '../app/balance/balance.route';
 import bankRoutes from '../app/bank/bank.route';
 import bankAccountRoutes from '../app/bankAccount/bankAccount.route';
 import customerRoutes from '../app/customer/customer.route';
-import transferRoutes from '../app/transfer/transfer.route';
+import transferRoutes from '../app/wire-transfer/wire-transfer.route';
 
 import { AppDataSource } from './data-source';
 
