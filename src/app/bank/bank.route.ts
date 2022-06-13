@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { create, getBankById, getBanks } from "./bank.controller";
-import { body, validationResult, param } from 'express-validator';
+import { body, param } from 'express-validator';
 
 const router = Router();
 

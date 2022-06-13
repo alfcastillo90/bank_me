@@ -31,7 +31,7 @@ class App {
             console.log(`conecction successfuly`);
             this.middlewares();
             this.routes();
-            con.synchronize()
+            // con.synchronize()
         }).catch(error => {
             console.log(`connection error ${error}`)
         });

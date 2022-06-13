@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from "express"
 import { createBank, getById, list } from "./bank.repository";
-import { validationResult } from 'express-validator'
-import { NotFound, BadRequest } from "http-errors";
-import { Bank } from "../entities/bank.entity";
+import { validationResult } from 'express-validator';
 
 export const getBanks = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
