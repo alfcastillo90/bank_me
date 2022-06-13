@@ -34,5 +34,5 @@ export class Customer {
     createAt: string;
     
     @Column({ name: 'update_at', default:  moment().format('YYYY-MM-DD hh:mm:ss'), onUpdate: moment().format('YYYY-MM-DD hh:mm:ss')})
-    updateAt: Date;
+    updateAt: string;
 }

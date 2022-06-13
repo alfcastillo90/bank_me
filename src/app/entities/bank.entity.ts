@@ -6,8 +6,10 @@ const moment = require('moment');
 export class Bank {
     @PrimaryGeneratedColumn()
     id: number;
+    
     @Column()
     name: string;
+
     @Column({ name: 'create_at', default:  moment().format('YYYY-MM-DD hh:mm:ss')})
     createAt: string;
 }
