@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BankAccount } from "./bank-account.entity";
 
 const moment = require('moment');
 @Entity({ name: 'customers' })
@@ -34,5 +35,8 @@ export class Customer {
     createAt: string;
     
     @Column({ name: 'update_at', default:  moment().format('YYYY-MM-DD hh:mm:ss'), onUpdate: moment().format('YYYY-MM-DD hh:mm:ss')})
-    updateAt: Date;
+    updateAt: string;
+
+    @OneToMany(() => BankAccount, (bankAccount: BankAccount) => bankAccount.customerId, { eager: true, cascade: true }) 
+    bankAccounts: BankAccount[]
 }
