@@ -1,13 +1,14 @@
 import { Router } from "express";
-import { createExternalTransfer, createInternalTransfer, getTransfers, getTransfersByBankAccount, getTransfersByCustomer, getTransfersById } from "./wire-transfer.controller";
+import { createWireTransfer, getWireTransfers, getWireTransfersByBankAccount, getWireTransfersByCustomer, getWireTransfersById } from "./wire-transfer.controller";
+import { createWireTransferValidator } from "./wire-transfer.validators";
+import { param } from 'express-validator';
 
 const router = Router();
 
-router.get('/' , getTransfers);
-router.get('/bankAccount/:bankAccountNumber' , getTransfersByBankAccount);
-router.get('/customer/:customerId' , getTransfersByCustomer);
-router.get('/id/:id' , getTransfersById);
-router.post('/external-transfer', createExternalTransfer);
-router.post('/internal-transfer', createInternalTransfer);
+router.get('/' , getWireTransfers);
+router.get('/bankAccount/:bankAccountNumber', param('bankAccountNumber').isNumeric(), getWireTransfersByBankAccount);
+router.get('/customer/:customerId', param('customerId').isNumeric(), getWireTransfersByCustomer);
+router.get('/id/:wireTransferid,', param('wireTransferid').isNumeric(), getWireTransfersById);
+router.post('/', createWireTransferValidator, createWireTransfer);
 
 export default router;

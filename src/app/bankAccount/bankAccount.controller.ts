@@ -27,9 +27,9 @@ export const getBankAccountsById = async (req: Request, res: Response) => {
         }
 
         const { bankAccountId } = req.params;
-        const customer = await getById(bankAccountId);
+        const bankAccounts = await getById(bankAccountId);
 
-        res.status(200).json(customer);
+        res.status(200).json(bankAccounts);
     } catch (error) {
         res.status(422).json({
             status: 400,
@@ -50,9 +50,9 @@ export const getBankAccountsByCustomer = async (req: Request, res: Response) => 
         }
 
         const { customerId } = req.params;
-        const customer = await getByCustomerId(customerId);
+        const bankAccounts = await getByCustomerId(customerId);
 
-        res.status(200).json(customer);
+        res.status(200).json(bankAccounts);
     } catch (error) {
         res.status(422).json({
             status: 400,
@@ -96,9 +96,9 @@ export const disableBankAccount = async (req: Request, res: Response) => {
             });
         }
 
-        const customer = await update(id, { isActive: false });
+        const bankAccount = await update(id, { isActive: false });
 
-        res.status(200).json(customer);
+        res.status(200).json(bankAccount);
     }  catch(e: any) {
         return res.status(400).send(e)
     }
