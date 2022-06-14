@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { createBankAccount, getBankAccounts, getBankAccountsByCustomer, getBankAccountsById, disableBankAccount } from "./bankAccount.controller";
+import { createBankAccount, getBankAccounts, getBankAccountsByCustomer, getBankAccountsById, disableBankAccount } from "./bank-account.controller";
 import { param } from 'express-validator';
-import { createBankAccountValidator } from "./bankAccount.validators";
+import { createBankAccountValidator } from "./bank-account.validators";
 
 const router = Router();
 

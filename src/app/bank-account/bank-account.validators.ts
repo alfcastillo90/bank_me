@@ -1,9 +1,6 @@
 import { checkSchema } from 'express-validator';
+import { BankAccountType } from '../../config/enums';
 
-enum BankAccountType {
-    SAVINGS = 'SAVINGS',
-    CHECKING = 'CHECKING'
-}
 export const createBankAccountValidator = checkSchema({
     bankId: {
         in: ['body'],
@@ -18,8 +15,12 @@ export const createBankAccountValidator = checkSchema({
         isString: true,
         custom: {
             options: (value) => {
-                if (value.toUpperCase() !== BankAccountType.SAVINGS && value.toUpperCase() !== BankAccountType.CHECKING) {
-                    Promise.reject(`Invalid account type. It must be equal to ${BankAccountType.CHECKING} or ${BankAccountType.SAVINGS}`)
+                const accountType = value.toUpperCase();
+
+                if (accountType === BankAccountType.SAVINGS || accountType === BankAccountType.CHECKING) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
         }

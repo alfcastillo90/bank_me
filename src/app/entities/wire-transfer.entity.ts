@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { WireTransferType } from "../../config/enums";
 import { BankAccount } from "./bank-account.entity";
 import { Bank } from "./bank.entity";
 import { Customer } from "./customer.entity";
@@ -32,10 +33,7 @@ export class WireTransfer {
     message: string;
     
     @Column()
-    date: Date;
-    
-    @Column()
-    type: string;
+    type: WireTransferType;
     
     @Column({ name: 'create_at', default:  moment().format('YYYY-MM-DD hh:mm:ss')})
     createAt: string;
@@ -50,7 +48,8 @@ export class WireTransfer {
     @ManyToOne(() => Customer, (customer: Customer) => customer.wireTransfers)
     @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
     customer: Customer;
-/*
+
     @ManyToOne(() => BankAccount, (bankAccount: BankAccount) => bankAccount.wireTransfers)
-    bankAccount: BankAccount;*/
+    @JoinColumn({ name: 'bank_account_id', referencedColumnName: 'id' })
+    bankAccount: BankAccount;
 }

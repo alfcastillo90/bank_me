@@ -4,7 +4,7 @@ import "reflect-metadata";
 import listEndpoints from 'express-list-endpoints';
 
 import bankRoutes from '../app/bank/bank.route';
-import bankAccountRoutes from '../app/bankAccount/bankAccount.route';
+import bankAccountRoutes from '../app/bank-account/bank-account.route';
 import customerRoutes from '../app/customer/customer.route';
 import transferRoutes from '../app/wire-transfer/wire-transfer.route';
 
@@ -20,9 +20,9 @@ class App {
     private apiPaths = {
         balance: '/api/balance',
         bank: '/api/banks',
-        bankAcounts: '/api/bank-account',
+        bankAcounts: '/api/bank-accounts',
         customers: '/api/customers',
-        transfers: '/api/transfers'
+        wireTransfers: '/api/wire-transfers'
     }
 
     constructor() {
@@ -53,7 +53,7 @@ class App {
         this.app.use(this.apiPaths.bank, bankRoutes)
         this.app.use(this.apiPaths.bankAcounts, bankAccountRoutes);
         this.app.use(this.apiPaths.customers, customerRoutes);
-        this.app.use(this.apiPaths.transfers, transferRoutes);
+        this.app.use(this.apiPaths.wireTransfers, transferRoutes);
         Logger.info(listEndpoints(this.app as any));
     }
 }
