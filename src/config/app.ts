@@ -20,7 +20,7 @@ class App {
     private apiPaths = {
         balance: '/api/balance',
         bank: '/api/banks',
-        bankAcounts: '/api/bank-account',
+        bankAcounts: '/api/bank-accounts',
         customers: '/api/customers',
         transfers: '/api/transfers'
     }
