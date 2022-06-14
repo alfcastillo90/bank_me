@@ -1,6 +1,6 @@
 import { Response } from "express";
-import { getBankAccounts, getBankAccountsByCustomer, getBankAccountsById } from "../../app/bankAccount/bankAccount.controller";
-import * as bankAccountRepository from "../../app/bankAccount/bankAccount.repository";
+import { getBankAccounts, getBankAccountsByCustomer, getBankAccountsById } from "../../app/bank-account/bank-account.controller";
+import * as bankAccountRepository from "../../app/bank-account/bank-account.repository";
 import { BankAccount } from "../../app/entities/bank-account.entity";
 import { Fakexpress } from "../../app/utils/fake-express";
 

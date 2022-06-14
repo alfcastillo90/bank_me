@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BankAccountType } from "../../config/enums";
 import { Bank } from "./bank.entity";
 import { Customer } from "./customer.entity";
 import { WireTransfer } from "./wire-transfer.entity";
@@ -16,7 +17,7 @@ export class BankAccount {
     customerId: number;
     
     @Column()
-    type: string;
+    type: BankAccountType;
     
     @Column({ name: 'account_number' })
     accountNumber: number;
@@ -40,7 +41,7 @@ export class BankAccount {
     @ManyToOne(() => Customer, (customer: Customer) => customer.bankAccounts)
     @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
     customer: Customer;
-/*
-    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.bankAccountId, { eager: true, cascade: true }) 
-    wireTransfers: WireTransfer[]*/
+
+    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.bankAccountId) 
+    wireTransfers: WireTransfer[]
 }
