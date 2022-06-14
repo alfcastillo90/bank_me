@@ -1,9 +1,6 @@
 import { checkSchema } from 'express-validator';
+import { BankAccountType } from '../../config/enums';
 
-enum BankAccountType {
-    SAVINGS = 'SAVINGS',
-    CHECKING = 'CHECKING'
-}
 export const createBankAccountValidator = checkSchema({
     bankId: {
         in: ['body'],

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { create, getById, list, update, getByCustomerId } from './bankAccount.repository';
+import { create, getById, list, update, getByCustomerId } from './bank-account.repository';
 import { validationResult } from 'express-validator';
 
 export const getBankAccounts = async (req: Request, res: Response) => {
