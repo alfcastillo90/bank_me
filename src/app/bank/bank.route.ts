@@ -8,7 +8,7 @@ router.post("/", body('name').isString() ,create);
 
 router.get("/", getBanks);
 
-router.get("/:bankId", param('bankId').isNumeric() ,getBankById);
+router.get("/id/:bankId", param('bankId').isNumeric() ,getBankById);
 
 
 export default router;

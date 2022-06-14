@@ -4,9 +4,9 @@ import { validationResult } from 'express-validator';
 
 export const getBankAccounts = async (req: Request, res: Response) => {
     try {
-        const customers = await list();
+        const banks = await list();
 
-        res.status(200).json(customers);
+        res.status(200).json(banks);
     } catch (error) {
         res.status(400).json({
             status: 400,

@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Bank } from "./bank.entity";
 import { Customer } from "./customer.entity";
 import { WireTransfer } from "./wire-transfer.entity";
@@ -9,7 +9,7 @@ export class BankAccount {
     @PrimaryGeneratedColumn()
     id: number;
     
-    @Column({ name: 'bank_account_id' })
+    @Column({ name: 'bank_id' })
     bankId: number;
     
     @Column({ name: 'customer_id' })
@@ -34,11 +34,13 @@ export class BankAccount {
     updateAt: string;
 
     @ManyToOne(() => Bank, (bank: Bank) => bank.bankAccounts)
+    @JoinColumn({ name: 'bank_id', referencedColumnName: 'id' })
     bank: Bank;
 
     @ManyToOne(() => Customer, (customer: Customer) => customer.bankAccounts)
+    @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
     customer: Customer;
-
+/*
     @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.bankAccountId, { eager: true, cascade: true }) 
-    wireTransfers: WireTransfer[]
+    wireTransfers: WireTransfer[]*/
 }
