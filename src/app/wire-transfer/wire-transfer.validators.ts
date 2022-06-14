@@ -1,4 +1,5 @@
 import { checkSchema } from 'express-validator';
+import { WireTransferType } from '../../config/enums';
 
 export const createWireTransferValidator = checkSchema({
     bankId: {
@@ -16,6 +17,17 @@ export const createWireTransferValidator = checkSchema({
     type: {
         in: ['body'],
         isString: true,
+        custom: {
+            options: (value) => {
+                const accountType = value.toUpperCase();
+
+                if (accountType === WireTransferType.DEPOSIT || accountType === WireTransferType.TRANSFER || accountType === WireTransferType.WITHDRAWAL) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
     },
     amount: {
         in: ['body'],
@@ -33,8 +45,4 @@ export const createWireTransferValidator = checkSchema({
         in: ['body'],
         isString: true
     },
-    date: {
-        in: ['body'],
-        isDate: true
-    }
 })
