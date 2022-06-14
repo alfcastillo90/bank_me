@@ -53,9 +53,9 @@ export const createCustomer = async (req: Request, res: Response) => {
             });
         }
 
-        const bank = await create(body);
+        const customer = await create(body);
 
-        res.status(200).json(bank);
+        res.status(200).json(customer);
     }  catch(e: any) {
         return res.status(400).send(e)
     }

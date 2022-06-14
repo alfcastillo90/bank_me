@@ -39,8 +39,8 @@ export class Customer {
     updateAt: string;
 
     @OneToMany(() => BankAccount, (bankAccount: BankAccount) => bankAccount.customerId) 
-    bankAccounts: BankAccount[]
+    bankAccounts: BankAccount[];
 
     @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.customerId)  
-    wireTransfers: WireTransfer[]
+    wireTransfers: WireTransfer[];
 }

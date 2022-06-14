@@ -11,6 +11,7 @@
   "author": "Carlos Alfredo Castillo Rodriguez",
   "license": "ISC",
   "dependencies": {
+    "@ngneat/falso": "^5.7.0",
     "@types/cors": "^2.8.12",
     "@types/express-list-endpoints": "^6.0.0",
     "@types/sqlite3": "^3.1.8",

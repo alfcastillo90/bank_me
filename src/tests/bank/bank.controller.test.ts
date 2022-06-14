@@ -1,8 +1,11 @@
 import { Response } from "express";
-import { getBankById, getBanks } from "../../app/bank/bank.controller";
+import { create, getBankById, getBanks } from "../../app/bank/bank.controller";
 import * as bankRepository from "../../app/bank/bank.repository";
 import { Bank } from "../../app/entities/bank.entity";
 import { Fakexpress } from "../../app/utils/fake-express";
+import { randCompanyName } from '@ngneat/falso';
+
+const moment = require('moment');
 
 describe('BankController', () => {
     test('getBanks - success', async () => {
@@ -51,6 +54,30 @@ describe('BankController', () => {
 
         const spy = jest.spyOn(bankRepository, 'getById').mockResolvedValueOnce(bank);
         await getBankById(reqRes.req, reqRes.res as any);
+        expect(reqRes.responseData).toEqual(bank);
+        expect(spy).toHaveBeenCalled();
+        spy.mockRestore();
+    });
+
+    test('createBank - success', async()=> {
+        const bank = {
+            id: Math.floor(Math.random() * 10),
+            name:  `${randCompanyName()} bank`,
+            createAt: moment().format('YYYY-MM-DD hh:mm:ss'),
+            bankAccounts: [],
+            wireTransfers: []
+        }
+
+       
+        const reqRes = new Fakexpress({
+            body: {
+                name: bank.name
+            }
+        });
+
+        
+        const spy = jest.spyOn(bankRepository, 'createBank').mockResolvedValueOnce(bank);
+        await create(reqRes.req, reqRes.res as Response);
         expect(reqRes.responseData).toEqual(bank);
         expect(spy).toHaveBeenCalled();
         spy.mockRestore();
