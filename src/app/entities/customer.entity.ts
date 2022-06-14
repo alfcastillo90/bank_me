@@ -38,9 +38,9 @@ export class Customer {
     @Column({ name: 'update_at', default:  moment().format('YYYY-MM-DD hh:mm:ss'), onUpdate: moment().format('YYYY-MM-DD hh:mm:ss')})
     updateAt: string;
 
-    @OneToMany(() => BankAccount, (bankAccount: BankAccount) => bankAccount.customerId, { eager: true, cascade: true }) 
+    @OneToMany(() => BankAccount, (bankAccount: BankAccount) => bankAccount.customerId) 
     bankAccounts: BankAccount[]
 
-    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.customerId, { eager: true, cascade: true }) 
+    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.customerId)  
     wireTransfers: WireTransfer[]
 }

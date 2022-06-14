@@ -15,9 +15,9 @@ export class Bank {
     @Column({ name: 'create_at', default:  moment().format('YYYY-MM-DD hh:mm:ss')})
     createAt: string;
 
-    @OneToMany(() => BankAccount, (bankAccount: BankAccount) => bankAccount.bankId, { eager: true, cascade: true }) 
+    @OneToMany(() => BankAccount, (bankAccount: BankAccount) => bankAccount.bankId)
     bankAccounts: BankAccount[];
 
-    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.bankId, { eager: true, cascade: true }) 
-    wireTransfers: WireTransfer[]
+    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.bankId) 
+    wireTransfers: WireTransfer[];
 }

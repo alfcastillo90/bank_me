@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BankAccount } from "./bank-account.entity";
 import { Bank } from "./bank.entity";
 import { Customer } from "./customer.entity";
@@ -44,11 +44,13 @@ export class WireTransfer {
     updateAt: string;
 
     @ManyToOne(() => Bank, (bank: Bank) => bank.bankAccounts)
+    @JoinColumn({ name: 'bank_id', referencedColumnName: 'id' })
     bank: Bank;
 
     @ManyToOne(() => Customer, (customer: Customer) => customer.wireTransfers)
+    @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
     customer: Customer;
-
+/*
     @ManyToOne(() => BankAccount, (bankAccount: BankAccount) => bankAccount.wireTransfers)
-    bankAccount: Customer;
+    bankAccount: BankAccount;*/
 }

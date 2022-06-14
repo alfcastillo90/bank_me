@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { create, getById, list, update } from './customer.repository';
 import { validationResult } from 'express-validator';
+import Logger from '../utils/logger';
 
 export const getCustomers = async (req: Request, res: Response) => {
     try {
@@ -8,14 +9,15 @@ export const getCustomers = async (req: Request, res: Response) => {
 
         res.status(200).json(customers);
     } catch (error) {
+        Logger.error(error);
         res.status(400).json({
             status: 400,
-            error
+            message: 'Bad request'
         })
     }
 }
 
-export const getCustomersById = async (req: Request, res: Response) => {
+export const getCustomerById = async (req: Request, res: Response) => {
     try {
         const errors = validationResult(req);
 
