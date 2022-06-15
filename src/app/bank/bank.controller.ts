@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express"
+import { Request, Response } from "express"
 import { createBank, getById, list } from "./bank.repository";
 import { validationResult } from 'express-validator';
 
@@ -14,7 +14,7 @@ export const getBanks = async (req: Request, res: Response) => {
 export const getBankById = async (req: Request, res: Response) => {
     try {
         const errors = validationResult(req);
-        console.log(`errors ${JSON.stringify(errors)}`);
+
         if (!errors.isEmpty()) {
             return res.status(422).json({
                 status: 422,
@@ -33,7 +33,7 @@ export const getBankById = async (req: Request, res: Response) => {
     }
 }
 
-export const create = async (req: Request, res: Response, next: NextFunction) => {
+export const create = async (req: Request, res: Response) => {
     try {
         const body = req.body;
 
@@ -50,6 +50,6 @@ export const create = async (req: Request, res: Response, next: NextFunction) =>
 
         res.status(200).json(bank);
     } catch (error) {
-        next(error);
+        return res.status(422).json(error);
     }
 }
