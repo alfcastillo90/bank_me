@@ -23,13 +23,13 @@ export class WireTransfer {
     @Column()
     amount: number;
     
-    @Column({ name: 'source_account' })
+    @Column({ name: 'source_account', nullable: true })
     sourceAccount: number;
     
     @Column({ name: 'destination_account' })
     destinationAccount: number;
     
-    @Column()
+    @Column({ nullable: true })
     message: string;
     
     @Column()

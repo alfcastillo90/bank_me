@@ -1,8 +1,20 @@
 import { AppDataSource } from "../../config/data-source";
 import { Id } from "../../config/declarations";
+import { WireTransferType } from "../../config/enums";
 import { WireTransfer } from "../entities/wire-transfer.entity";
 
-export const create = async (data: WireTransfer): Promise<WireTransfer>  => {
+interface WireTransferDTO {
+    bankId: number;
+    bankAccountId: number;
+    customerId: number;
+    amount: number;
+    sourceAccount: number;
+    destinationAccount: number;
+    message?: string;
+    type: WireTransferType
+}
+
+export const create = async (data: WireTransferDTO): Promise<WireTransfer>  => {
     const repository = AppDataSource.getRepository(WireTransfer);
 
     const wireTransfer = repository.create(data);
