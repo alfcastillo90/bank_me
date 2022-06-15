@@ -22,7 +22,7 @@ export class BankAccount {
     @Column({ name: 'account_number' })
     accountNumber: number;
     
-    @Column({ name: 'current_account_balance' })
+    @Column({ name: 'current_account_balance', default: 0 })
     currentAccountBalance: number;
     
     @Column({ name: 'is_active', default: true })
