@@ -63,7 +63,7 @@ export const schemas = {
             }
         }
     },
-    BankAccountNumber: {
+    AccountNumber: {
         type: 'number'
     },
     BankId: {
@@ -174,6 +174,14 @@ export const schemas = {
                         type: 'string'
                     }
                 }
+            }
+        }
+    },
+    Message: {
+        type: 'object',
+        properties: {
+            message: {
+                type: 'string'
             }
         }
     }

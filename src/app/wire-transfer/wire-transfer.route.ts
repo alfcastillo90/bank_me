@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/' , getWireTransfers);
 router.get('/bank/:bankId', param('bankId').isNumeric(), getWireTransfersByBank);
-router.get('/bank/:bankAccountNumber', param('bankAccountNumber').isNumeric(), getWireTransfersByBankAccount);
+router.get('/account-number/:bankAccountNumber', param('bankAccountNumber').isNumeric(), getWireTransfersByBankAccount);
 router.get('/customer/:customerId', param('customerId').isNumeric(), getWireTransfersByCustomer);
 router.get('/id/:wireTransferid,', param('wireTransferid').isNumeric(), getWireTransfersById);
 router.post('/', createWireTransferValidator, createWireTransfer);

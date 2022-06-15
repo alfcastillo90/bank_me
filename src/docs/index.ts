@@ -1,7 +1,9 @@
 import environment from "../config/environment";
-import { bankAccoutns } from "./bank-account";
+import { bankAccounts } from "./bank-account";
 import { banks } from "./banks";
+import { customers } from "./customer";
 import { schemas as importedSchemas } from "./schema";
+import { wireTransfers } from "./wire-transfers";
 
 export const swaggerDocs = {
     openapi: "3.0.1",
@@ -27,7 +29,9 @@ export const swaggerDocs = {
     },
     paths: {
         ...banks,
-        ...bankAccoutns
+        ...bankAccounts,
+        ...customers,
+        ...wireTransfers
     }
 
 }

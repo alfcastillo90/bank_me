@@ -10,8 +10,8 @@ export const getCustomers = async (req: Request, res: Response) => {
         res.status(200).json(customers);
     } catch (error) {
         Logger.error(error);
-        res.status(400).json({
-            status: 400,
+        res.status(500).json({
+            status: 500,
             message: 'Bad request'
         })
     }
@@ -23,7 +23,7 @@ export const getCustomerById = async (req: Request, res: Response) => {
 
         if (!errors.isEmpty()) {
             res.status(422).json({
-                status: 400,
+                status: 422,
                 errors
             })
         }
@@ -33,8 +33,8 @@ export const getCustomerById = async (req: Request, res: Response) => {
 
         res.status(200).json(customer);
     } catch (error) {
-        res.status(422).json({
-            status: 400,
+        res.status(500).json({
+            status: 500,
             error
         })
     }
@@ -55,7 +55,7 @@ export const createCustomer = async (req: Request, res: Response) => {
 
         const customer = await create(body);
 
-        res.status(200).json(customer);
+        res.status(201).json(customer);
     }  catch(e: any) {
         return res.status(400).send(e)
     }
@@ -79,7 +79,7 @@ export const updateCustomer = async (req: Request, res: Response) => {
 
         res.status(200).json(customer);
     }  catch(e: any) {
-        return res.status(400).send(e)
+        return res.status(500).send(e)
     }
 }
 

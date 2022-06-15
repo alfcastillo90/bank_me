@@ -1,17 +1,17 @@
-export const bankAccounts = {
-    '/api/bank-accounts': {
+export const wireTransfers = {
+    '/api/wire-transfers': {
         get:{
-            tags: ['Bank account operations'],
-            description: "Get bank accounts",
-            operationId: 'getBankAccounts',
+            tags: ['WireTransfer operations'],
+            description: "Get wire transfers",
+            operationId: 'getWireTransfers',
             parameters:[],
             responses:{
                 '200':{
-                    description:"bank accounts were obtained",
+                    description:"wire transfers were obtained",
                     content:{
                         'application/json':{
                             schema:{
-                                $ref:'#/components/schemas/BankAccount'
+                                $ref:'#/components/schemas/WireTransfer'
                             }
                         }
                     }
@@ -19,26 +19,26 @@ export const bankAccounts = {
             }
         },
         post:{
-            tags:['Bank account operations'],
-            description: "Create bank account",
-            operationId: "create",
+            tags:['WireTransfer operations'],
+            description: "Create wire transfer",
+            operationId: "createWireTransfer",
             parameters:[],
             requestBody: {
                 content:{
                     'application/json': {
                         schema:{
-                            $ref:'#/components/schemas/CreateBankAccount'
+                            $ref:'#/components/schemas/WireTransfer'
                         }
                     }
                 }
             },
             responses:{
                 '201':{
-                    description:"bank account were created successfully",
+                    description:"wire transfer were created successfully",
                     content:{
                         'application/json':{
                             schema:{
-                                $ref:'#/components/schemas/CreateBankAccount'
+                                $ref:'#/components/schemas/WireTransfer'
                             }
                         }
                     }
@@ -59,40 +59,40 @@ export const bankAccounts = {
             }
         }
     },
-    '/api/bank-accounts/id/{id}': {
+    '/api/wire-transfers/account-number/{accountNumber}': {
         get:{
-            tags: ['Bank account operations'],
-            description: "Get bank account information provided by id",
-            operationId: "getBankAccountsById",
+            tags: ['WireTransfer operations'],
+            description: "Get wire transfer information provided by account number",
+            operationId: "getWireTransferById",
             parameters:[
                 {
                     name:"id",
                     in:"path",
                     schema:{
-                        $ref:"#/components/schemas/BankAccountId"
+                        $ref:"#/components/schemas/BankAccountNumber"
                     },
                     required:true,
                 }
             ],
             responses:{
                 '200':{
-                    description:"bank account information is obtained",
+                    description:"wire transfer information is obtained",
                     content:{
                         'application/json':{
                             schema:{
-                                $ref:"#/components/schemas/BankAccount"
+                                $ref:"#/components/schemas/WireTransfer"
                             }
                         }
                     }
                 },
                 '404':{
-                    description: "Bank account is not found",
+                    description: "Wire transfer is not found",
                     content:{
                         'application/json':{
                             schema:{
                                 $ref:'#/components/schemas/Error',
                                 example:{
-                                    message:"We can't find the bank account",
+                                    message:"We can't find the wire transfer",
                                     internal_code:"Invalid id"
                                 }
                             }
@@ -100,42 +100,42 @@ export const bankAccounts = {
                     }
                 }
             }
-        }
+        },
     },
-    '/api/bank-accounts/account-number/{accountNumber}': {
+    '/api/wire-transfers/bank/{bankId}': {
         get:{
-            tags: ['Bank account operations'],
-            description: "Get bank account information provided by account number",
-            operationId: "getBankAccountByAccountNumber",
+            tags: ['WireTransfer operations'],
+            description: "Get wire transfer information provided by bank id",
+            operationId: "getWireTransferById",
             parameters:[
                 {
                     name:"id",
                     in:"path",
                     schema:{
-                        $ref:"#/components/schemas/AccountNumber"
+                        $ref:"#/components/schemas/BankId"
                     },
                     required:true,
                 }
             ],
             responses:{
                 '200':{
-                    description:"bank account is obtained",
+                    description:"wire transfer information is obtained",
                     content:{
                         'application/json':{
                             schema:{
-                                $ref:"#/components/schemas/BankAccount"
+                                $ref:"#/components/schemas/WireTransfer"
                             }
                         }
                     }
                 },
                 '404':{
-                    description: "Bank is not found",
+                    description: "Wire transfer is not found",
                     content:{
                         'application/json':{
                             schema:{
                                 $ref:'#/components/schemas/Error',
                                 example:{
-                                    message:"We can't find the bank account",
+                                    message:"We can't find the wire transfer",
                                     internal_code:"Invalid id"
                                 }
                             }
@@ -143,13 +143,13 @@ export const bankAccounts = {
                     }
                 }
             }
-        }
-    }, 
-    '/api/bank-accounts/customer/{customerId}': {
+        },
+    },
+    '/api/wire-transfers/customer/{customerId}': {
         get:{
-            tags: ['Bank account operations'],
-            description: "Get customer bank accounts",
-            operationId: "getBankAccountsByCustomer",
+            tags: ['WireTransfer operations'],
+            description: "Get customer wire transfers",
+            operationId: "getWireTransfersByCustomer",
             parameters:[
                 {
                     name:"id",
@@ -162,23 +162,23 @@ export const bankAccounts = {
             ],
             responses:{
                 '200':{
-                    description:"bank account is obtained",
+                    description:"wire transfers information is obtained",
                     content:{
                         'application/json':{
                             schema:{
-                                $ref:"#/components/schemas/BankAccount"
+                                $ref:"#/components/schemas/Cistp,er"
                             }
                         }
                     }
                 },
                 '404':{
-                    description: "Bank is not found",
+                    description: "Wire transfer is not found",
                     content:{
                         'application/json':{
                             schema:{
                                 $ref:'#/components/schemas/Error',
                                 example:{
-                                    message:"We can't find the bank account",
+                                    message:"We can't find the wire transfer",
                                     internal_code:"Invalid id"
                                 }
                             }
@@ -186,48 +186,49 @@ export const bankAccounts = {
                     }
                 }
             }
-        }
-    }, 
-    '/api/bank-accounts/disable/{id}': {
-        patch: {
-            tags: ['Bank account operations'],
-            description: "Disable bank accounts",
-            operationId: "disableBankAccount",
+        },
+    },
+    '/api/wire-transfers/id/{id}': {
+        get:{
+            tags: ['WireTransfer operations'],
+            description: "Get wire transfer information provided by id",
+            operationId: "getWireTransferById",
             parameters:[
                 {
                     name:"id",
                     in:"path",
                     schema:{
-                        $ref:"#/components/schemas/BankAccountId"
+                        $ref:"#/components/schemas/WireTransferId"
                     },
                     required:true,
                 }
             ],
             responses:{
                 '200':{
-                    description:"bank account were disabled",
+                    description:"wire transfer information is obtained",
                     content:{
                         'application/json':{
                             schema:{
-                                $ref:'#/components/schemas/Message'
+                                $ref:"#/components/schemas/WireTransfer"
                             }
                         }
                     }
                 },
-                '422': { 
-                    description: 'Unprocessable Entity',
+                '404':{
+                    description: "Wire transfer is not found",
                     content:{
                         'application/json':{
                             schema:{
-                                $ref:"#/components/schemas/Error422"
+                                $ref:'#/components/schemas/Error',
+                                example:{
+                                    message:"We can't find the wire transfer",
+                                    internal_code:"Invalid id"
+                                }
                             }
                         }
                     }
-                },
-                '500':{
-                    description: 'Server error'
                 }
             }
-        }
-    }
+        },
+    },
 }

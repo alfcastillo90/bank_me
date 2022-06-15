@@ -8,8 +8,8 @@ const router = Router();
 router.get('/', getCustomers);
 router.get('/id/:customerId', param('customerId').isNumeric(), getCustomerById);
 router.post('/', createCustomerValidator, createCustomer);
-router.put('/:customerId', updateCustomerValidator, updateCustomer);
-router.patch('/disableCustomer/:customerId', param('customerId').isNumeric(), disableCustomer);
+router.put('/id/:customerId', updateCustomerValidator, updateCustomer);
+router.patch('/disable-customer/:customerId', param('customerId').isNumeric(), disableCustomer);
 
 
 export default router;
