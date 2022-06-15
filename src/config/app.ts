@@ -12,6 +12,8 @@ import Logger from '../app/utils/logger';
 
 import { AppDataSource } from './data-source';
 
+import swaggerUi from "swagger-ui-express";
+
 
 class App {
     private readonly app: express.Application;
@@ -32,7 +34,8 @@ class App {
             Logger.info(`conecction successfuly`)
             this.middlewares();
             this.routes();
-            con.synchronize()
+            con.synchronize();
+            this.swagger();
         }).catch(error => {
             Logger.error(`connection error ${JSON.stringify(error)}`);
         });
@@ -55,6 +58,18 @@ class App {
         this.app.use(this.apiPaths.customers, customerRoutes);
         this.app.use(this.apiPaths.wireTransfers, transferRoutes);
         Logger.info(listEndpoints(this.app as any));
+    }
+
+    swagger() {
+        this.app.use(
+            "/docs",
+            swaggerUi.serve,
+            swaggerUi.setup(undefined, {
+              swaggerOptions: {
+                url: "/swagger.json",
+              },
+            })
+          );
     }
 }
 export default App; 

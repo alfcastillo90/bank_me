@@ -1,0 +1,29 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "bank_me",
+		"version": "1.0.0",
+		"description": "internal api for a fake finantial institution using nodejs and express",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "Carlos Alfredo Castillo Rodriguez"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
