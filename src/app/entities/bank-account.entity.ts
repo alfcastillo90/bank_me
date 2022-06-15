@@ -42,6 +42,6 @@ export class BankAccount {
     @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
     customer: Customer;
 
-    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.bankAccountId) 
+    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.sourceAccount) 
     wireTransfers: WireTransfer[]
 }
