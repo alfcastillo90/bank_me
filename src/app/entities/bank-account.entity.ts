@@ -22,7 +22,7 @@ export class BankAccount {
     @Column({ name: 'account_number' })
     accountNumber: number;
     
-    @Column({ name: 'current_account_balance' })
+    @Column({ name: 'current_account_balance', default: 0 })
     currentAccountBalance: number;
     
     @Column({ name: 'is_active', default: true })
@@ -42,6 +42,6 @@ export class BankAccount {
     @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
     customer: Customer;
 
-    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.bankAccountId) 
+    @OneToMany(() => WireTransfer, (wireTransfer: WireTransfer) => wireTransfer.sourceAccount) 
     wireTransfers: WireTransfer[]
 }

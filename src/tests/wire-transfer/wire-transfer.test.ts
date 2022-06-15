@@ -3,6 +3,7 @@ import { WireTransfer } from "../../app/entities/wire-transfer.entity";
 import { Fakexpress } from "../../app/utils/fake-express";
 import { getWireTransfers, getWireTransfersByCustomer, getWireTransfersById } from "../../app/wire-transfer/wire-transfer.controller";
 import * as wireTransferRepository from '../../app/wire-transfer/wire-transfer.repository';
+import { WireTransferType } from "../../config/enums";
 
 describe('WireTransferController', () => {
     test('getWireTransfers - success', async () => {
@@ -10,13 +11,12 @@ describe('WireTransferController', () => {
             {
                 id: 1,
                 bankId: 2,
-                bankAccountId: 1,
                 customerId: 1,
                 amount: 100000,
                 sourceAccount: 123456789,
                 destinationAccount: 999999999,
                 message: "test",
-                type: "Deposit",
+                type: WireTransferType.DEPOSIT,
                 createAt: "2022-06-14 03:23:18",
                 updateAt: "2022-06-14 03:23:18"
             }
@@ -36,7 +36,6 @@ describe('WireTransferController', () => {
         const bankAccount =      {
             id: 1,
             bankId: 2,
-            bankAccountId: 1,
             customerId: 1,
             amount: 100000,
             sourceAccount: 123456789,
@@ -66,7 +65,6 @@ describe('WireTransferController', () => {
             {
                 id: 1,
                 bankId: 2,
-                bankAccountId: 1,
                 customerId: 1,
                 amount: 100000,
                 sourceAccount: 123456789,

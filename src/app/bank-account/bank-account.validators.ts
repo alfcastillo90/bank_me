@@ -26,11 +26,7 @@ export const createBankAccountValidator = checkSchema({
         }
 
     },
-    accountNumber: {
-        in: ['body'],
-        isNumeric: true
-    },
-    currentAccountBalance: {
+    initialDeposit: {
         in: ['body'],
         isNumeric: true
     }

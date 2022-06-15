@@ -14,22 +14,19 @@ export class WireTransfer {
     @Column({ name: 'bank_id' })
     bankId: number;
 
-    @Column({ name: 'bank_account_id' })
-    bankAccountId: number;
-
     @Column({ name: 'customer_id' })
     customerId: number;
     
     @Column()
     amount: number;
     
-    @Column({ name: 'source_account' })
+    @Column({ name: 'source_account', nullable: true })
     sourceAccount: number;
     
     @Column({ name: 'destination_account' })
     destinationAccount: number;
     
-    @Column()
+    @Column({ nullable: true })
     message: string;
     
     @Column()
@@ -50,6 +47,6 @@ export class WireTransfer {
     customer: Customer;
 
     @ManyToOne(() => BankAccount, (bankAccount: BankAccount) => bankAccount.wireTransfers)
-    @JoinColumn({ name: 'bank_account_id', referencedColumnName: 'id' })
+    @JoinColumn({ name: 'source_account', referencedColumnName: 'id' })
     bankAccount: BankAccount;
 }

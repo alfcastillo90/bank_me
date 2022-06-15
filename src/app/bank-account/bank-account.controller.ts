@@ -27,7 +27,7 @@ export const getBankAccountsById = async (req: Request, res: Response) => {
         }
 
         const { bankAccountId } = req.params;
-        const bankAccounts = await getById(bankAccountId);
+        const bankAccounts = await getById(parseInt(bankAccountId));
 
         res.status(200).json(bankAccounts);
     } catch (error) {
@@ -50,7 +50,7 @@ export const getBankAccountsByCustomer = async (req: Request, res: Response) => 
         }
 
         const { customerId } = req.params;
-        const bankAccounts = await getByCustomerId(customerId);
+        const bankAccounts = await getByCustomerId(parseInt(customerId));
 
         res.status(200).json(bankAccounts);
     } catch (error) {
@@ -85,7 +85,7 @@ export const createBankAccount = async (req: Request, res: Response) => {
 
 export const disableBankAccount = async (req: Request, res: Response) => {
     try {
-        const id = req.params.bankAccountId;
+        const id = parseInt(req.params.bankAccountId);
 
         const errors = validationResult(req);
 
