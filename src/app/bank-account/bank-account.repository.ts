@@ -64,9 +64,9 @@ export const list = async (): Promise<BankAccount[]> => {
     return repository.find();
 }
 
-export const getById = async (id: Id): Promise<BankAccount> => {
+export const getById = async (id: number): Promise<BankAccount> => {
     const repository = AppDataSource.getRepository(BankAccount);
-    const bankAccount = await repository.findOneBy({ id: id as number });
+    const bankAccount = await repository.findOneBy({ id });
 
     if (!bankAccount) {
         throw new Error("BankAccount does not exist");
@@ -75,10 +75,22 @@ export const getById = async (id: Id): Promise<BankAccount> => {
     return bankAccount;
 }
 
-export const getByCustomerId = async (customerId: Id): Promise<BankAccount[]> => {
+export const getByCustomerId = async (customerId: number): Promise<BankAccount[]> => {
     const repository = AppDataSource.getRepository(BankAccount);
 
-    return await repository.findBy({ customerId: customerId as number });
+    return await repository.findBy({ customerId });
+}
+
+export const getByAccountNumber = async(accountNumber: number): Promise<BankAccount> => {
+    const repository = AppDataSource.getRepository(BankAccount);
+
+    const bankAccount = await repository.findOneBy({ accountNumber });
+
+    if (!bankAccount) {
+        throw new Error("BankAccount does not exist");
+    }
+
+    return bankAccount;
 }
 
 export const update = async (id: number, data: Partial<BankAccount>): Promise<BankAccount | null> => {
