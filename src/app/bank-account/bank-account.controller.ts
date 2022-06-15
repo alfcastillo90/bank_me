@@ -8,8 +8,8 @@ export const getBankAccounts = async (req: Request, res: Response) => {
 
         res.status(200).json(banks);
     } catch (error) {
-        res.status(400).json({
-            status: 400,
+        res.status(500).json({
+            status: 500,
             error
         })
     }

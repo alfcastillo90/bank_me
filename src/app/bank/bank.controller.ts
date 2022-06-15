@@ -48,8 +48,8 @@ export const create = async (req: Request, res: Response) => {
 
         const bank = await createBank(body);
 
-        res.status(200).json(bank);
+        res.status(201).json(bank);
     } catch (error) {
-        return res.status(422).json(error);
+        return res.status(500).json(error);
     }
 }
