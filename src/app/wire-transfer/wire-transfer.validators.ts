@@ -10,10 +10,6 @@ export const createWireTransferValidator = checkSchema({
         in: ['body'],
         isNumeric: true,
     },
-    bankAccountId: {
-        in: ['body'],
-        isNumeric: true,
-    },
     type: {
         in: ['body'],
         isString: true,
