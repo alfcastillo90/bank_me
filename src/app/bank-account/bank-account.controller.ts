@@ -85,7 +85,7 @@ export const createBankAccount = async (req: Request, res: Response) => {
 
 export const disableBankAccount = async (req: Request, res: Response) => {
     try {
-        const id = req.params.bankAccountId;
+        const id = parseInt(req.params.bankAccountId);
 
         const errors = validationResult(req);
 
