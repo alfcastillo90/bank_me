@@ -55,8 +55,8 @@ export const getWireTransfersByCustomer = async (req: Request, res: Response) =>
 
         res.status(200).json(wireTransfers);
     } catch (error) {
-        res.status(422).json({
-            status: 400,
+        res.status(500).json({
+            status: 500,
             error
         })
     }
@@ -68,7 +68,7 @@ export const getWireTransfersById = async (req: Request, res: Response) => {
 
         if (!errors.isEmpty()) {
             res.status(422).json({
-                status: 400,
+                status: 422,
                 errors
             })
         }
@@ -78,8 +78,8 @@ export const getWireTransfersById = async (req: Request, res: Response) => {
 
         res.status(200).json(wireTransfer);
     } catch (error) {
-        res.status(422).json({
-            status: 400,
+        res.status(500).json({
+            status: 500,
             error
         })
     }
@@ -122,8 +122,8 @@ export const getWireTransfersByBankAccount = async (req: Request, res: Response)
 
         res.status(200).json(wireTransfers);
     } catch (error) {
-        res.status(422).json({
-            status: 400,
+        res.status(500).json({
+            status: 500,
             error
         })
     }

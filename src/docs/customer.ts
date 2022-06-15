@@ -1,17 +1,17 @@
-export const bankAccounts = {
-    '/api/bank-accounts': {
+export const customers = {
+    '/api/customers': {
         get:{
-            tags: ['Bank account operations'],
-            description: "Get bank accounts",
-            operationId: 'getBankAccounts',
+            tags: ['Customer operations'],
+            description: "Get customers",
+            operationId: 'getCustomers',
             parameters:[],
             responses:{
                 '200':{
-                    description:"bank accounts were obtained",
+                    description:"customers were obtained",
                     content:{
                         'application/json':{
                             schema:{
-                                $ref:'#/components/schemas/BankAccount'
+                                $ref:'#/components/schemas/Customer'
                             }
                         }
                     }
@@ -19,26 +19,26 @@ export const bankAccounts = {
             }
         },
         post:{
-            tags:['Bank account operations'],
-            description: "Create bank account",
-            operationId: "create",
+            tags:['Customer operations'],
+            description: "Create customer",
+            operationId: "createCustomer",
             parameters:[],
             requestBody: {
                 content:{
                     'application/json': {
                         schema:{
-                            $ref:'#/components/schemas/CreateBankAccount'
+                            $ref:'#/components/schemas/Customer'
                         }
                     }
                 }
             },
             responses:{
                 '201':{
-                    description:"bank account were created successfully",
+                    description:"customer were created successfully",
                     content:{
                         'application/json':{
                             schema:{
-                                $ref:'#/components/schemas/CreateBankAccount'
+                                $ref:'#/components/schemas/Customer'
                             }
                         }
                     }
@@ -59,97 +59,11 @@ export const bankAccounts = {
             }
         }
     },
-    '/api/bank-accounts/id/{id}': {
+    '/api/customers/id/{id}': {
         get:{
-            tags: ['Bank account operations'],
-            description: "Get bank account information provided by id",
-            operationId: "getBankAccountsById",
-            parameters:[
-                {
-                    name:"id",
-                    in:"path",
-                    schema:{
-                        $ref:"#/components/schemas/BankAccountId"
-                    },
-                    required:true,
-                }
-            ],
-            responses:{
-                '200':{
-                    description:"bank account information is obtained",
-                    content:{
-                        'application/json':{
-                            schema:{
-                                $ref:"#/components/schemas/BankAccount"
-                            }
-                        }
-                    }
-                },
-                '404':{
-                    description: "Bank account is not found",
-                    content:{
-                        'application/json':{
-                            schema:{
-                                $ref:'#/components/schemas/Error',
-                                example:{
-                                    message:"We can't find the bank account",
-                                    internal_code:"Invalid id"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    '/api/bank-accounts/account-number/{accountNumber}': {
-        get:{
-            tags: ['Bank account operations'],
-            description: "Get bank account information provided by account number",
-            operationId: "getBankAccountByAccountNumber",
-            parameters:[
-                {
-                    name:"id",
-                    in:"path",
-                    schema:{
-                        $ref:"#/components/schemas/AccountNumber"
-                    },
-                    required:true,
-                }
-            ],
-            responses:{
-                '200':{
-                    description:"bank account is obtained",
-                    content:{
-                        'application/json':{
-                            schema:{
-                                $ref:"#/components/schemas/BankAccount"
-                            }
-                        }
-                    }
-                },
-                '404':{
-                    description: "Bank is not found",
-                    content:{
-                        'application/json':{
-                            schema:{
-                                $ref:'#/components/schemas/Error',
-                                example:{
-                                    message:"We can't find the bank account",
-                                    internal_code:"Invalid id"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }, 
-    '/api/bank-accounts/customer/{customerId}': {
-        get:{
-            tags: ['Bank account operations'],
-            description: "Get customer bank accounts",
-            operationId: "getBankAccountsByCustomer",
+            tags: ['Customer operations'],
+            description: "Get customer information provided by id",
+            operationId: "getCustomerById",
             parameters:[
                 {
                     name:"id",
@@ -162,23 +76,23 @@ export const bankAccounts = {
             ],
             responses:{
                 '200':{
-                    description:"bank account is obtained",
+                    description:"customer information is obtained",
                     content:{
                         'application/json':{
                             schema:{
-                                $ref:"#/components/schemas/BankAccount"
+                                $ref:"#/components/schemas/Customer"
                             }
                         }
                     }
                 },
                 '404':{
-                    description: "Bank is not found",
+                    description: "Customer is not found",
                     content:{
                         'application/json':{
                             schema:{
                                 $ref:'#/components/schemas/Error',
                                 example:{
-                                    message:"We can't find the bank account",
+                                    message:"We can't find the customer",
                                     internal_code:"Invalid id"
                                 }
                             }
@@ -186,26 +100,75 @@ export const bankAccounts = {
                     }
                 }
             }
-        }
-    }, 
-    '/api/bank-accounts/disable/{id}': {
-        patch: {
-            tags: ['Bank account operations'],
-            description: "Disable bank accounts",
-            operationId: "disableBankAccount",
+        },
+        put:{
+            tags:['Customer operations'],
+            description: "Update customer",
+            operationId: "updateCustomer",
             parameters:[
                 {
                     name:"id",
                     in:"path",
                     schema:{
-                        $ref:"#/components/schemas/BankAccountId"
+                        $ref:"#/components/schemas/CustomerId"
+                    },
+                    required:true,
+                }
+            ],
+            requestBody: {
+                content:{
+                    'application/json': {
+                        schema:{
+                            $ref:'#/components/schemas/Customer'
+                        }
+                    }
+                }
+            },
+            responses:{
+                '201':{
+                    description:"customer were created successfully",
+                    content:{
+                        'application/json':{
+                            schema:{
+                                $ref:'#/components/schemas/Customer'
+                            }
+                        }
+                    }
+                },
+                '422': { 
+                    description: 'Unprocessable Entity',
+                    content:{
+                        'application/json':{
+                            schema:{
+                                $ref:"#/components/schemas/Error422"
+                            }
+                        }
+                    }
+                },
+                '500':{
+                    description: 'Server error'
+                }
+            }
+        }
+    },
+    '/api/customers/disable/{id}': {
+        patch: {
+            tags: ['Customer operations'],
+            description: "Disable customer",
+            operationId: "disableCustomer",
+            parameters:[
+                {
+                    name:"id",
+                    in:"path",
+                    schema:{
+                        $ref:"#/components/schemas/CustomerId"
                     },
                     required:true,
                 }
             ],
             responses:{
                 '200':{
-                    description:"bank account were disabled",
+                    description:"customer were disabled",
                     content:{
                         'application/json':{
                             schema:{

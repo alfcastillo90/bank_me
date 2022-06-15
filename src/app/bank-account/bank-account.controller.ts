@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { create, getById, list, update, getByCustomerId } from './bank-account.repository';
+import { create, getById, list, update, getByCustomerId, getByAccountNumber } from './bank-account.repository';
 import { validationResult } from 'express-validator';
 
 export const getBankAccounts = async (req: Request, res: Response) => {
@@ -21,7 +21,7 @@ export const getBankAccountsById = async (req: Request, res: Response) => {
 
         if (!errors.isEmpty()) {
             res.status(422).json({
-                status: 400,
+                status: 422,
                 errors
             })
         }
@@ -31,8 +31,32 @@ export const getBankAccountsById = async (req: Request, res: Response) => {
 
         res.status(200).json(bankAccounts);
     } catch (error) {
-        res.status(422).json({
-            status: 400,
+        res.status(500).json({
+            status: 500,
+            error
+        })
+    }
+}
+
+
+export const getBankAccountByAccountNumber = async (req: Request, res: Response) => {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            res.status(422).json({
+                status: 422,
+                errors
+            })
+        }
+
+        const { accountNumber } = req.params;
+        const bankAccounts = await getByAccountNumber(parseInt(accountNumber));
+
+        res.status(200).json(bankAccounts);
+    } catch (error) {
+        res.status(500).json({
+            status: 500,
             error
         })
     }
@@ -44,7 +68,7 @@ export const getBankAccountsByCustomer = async (req: Request, res: Response) => 
 
         if (!errors.isEmpty()) {
             res.status(422).json({
-                status: 400,
+                status: 422,
                 errors
             })
         }
@@ -54,8 +78,8 @@ export const getBankAccountsByCustomer = async (req: Request, res: Response) => 
 
         res.status(200).json(bankAccounts);
     } catch (error) {
-        res.status(422).json({
-            status: 400,
+        res.status(500).json({
+            status: 500,
             error
         })
     }
@@ -96,10 +120,12 @@ export const disableBankAccount = async (req: Request, res: Response) => {
             });
         }
 
-        const bankAccount = await update(id, { isActive: false });
+        await update(id, { isActive: false });
 
-        res.status(200).json(bankAccount);
+        res.status(200).json({
+            message: 'bank account disabled succesfully'
+        });
     }  catch(e: any) {
-        return res.status(400).send(e)
+        return res.status(500).send(e)
     }
 }
