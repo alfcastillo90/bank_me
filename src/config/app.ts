@@ -12,7 +12,8 @@ import Logger from '../app/utils/logger';
 
 import { AppDataSource } from './data-source';
 
-import swaggerUi from "swagger-ui-express";
+import * as swaggerUI from 'swagger-ui-express';
+import { swaggerDocs } from '../docs';
 
 
 class App {
@@ -34,8 +35,8 @@ class App {
             Logger.info(`conecction successfuly`)
             this.middlewares();
             this.routes();
-            con.synchronize();
-            this.swagger();
+           
+            // con.synchronize();
         }).catch(error => {
             Logger.error(`connection error ${JSON.stringify(error)}`);
         });
@@ -57,19 +58,8 @@ class App {
         this.app.use(this.apiPaths.bankAcounts, bankAccountRoutes);
         this.app.use(this.apiPaths.customers, customerRoutes);
         this.app.use(this.apiPaths.wireTransfers, transferRoutes);
+        this.app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
         Logger.info(listEndpoints(this.app as any));
-    }
-
-    swagger() {
-        this.app.use(
-            "/docs",
-            swaggerUi.serve,
-            swaggerUi.setup(undefined, {
-              swaggerOptions: {
-                url: "/swagger.json",
-              },
-            })
-          );
     }
 }
 export default App; 
